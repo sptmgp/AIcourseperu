@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diplomado en IA Aplicada a la Salud — Estructura del Programa</title>
+<style>
+  :root {
+    --navy: #21295C;
+    --deepblue: #065A82;
+    --teal: #1C7293;
+    --ice: #EAF3F8;
+    --white: #FFFFFF;
+    --text-dark: #1F2937;
+    --text-muted: #6B7280;
+    --warn-bg: #FBEAF0;
+    --warn-fg: #99355E;
+    --partial-bg: #E6F1FB;
+    --partial-fg: #185FA5;
+    --full-bg: #EAF3DE;
+    --full-fg: #3B6D11;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #F7F8FA;
+    color: var(--text-dark);
+    line-height: 1.55;
+  }
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 48px 24px 40px;
+    text-align: left;
+  }
+  header .eyebrow {
+    display: inline-block;
+    background: var(--deepblue);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+    font-weight: 700;
+    max-width: 700px;
+  }
+  header p {
+    margin: 0;
+    color: #CADCFC;
+    font-size: 15px;
+    max-width: 640px;
+  }
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .ciclo-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--teal);
+  }
+  .ciclo-title:first-child { margin-top: 0; }
+  .course-card {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .course-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .course-num {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ice);
+    border: 1px solid #D8E3EC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .course-info { flex: 1; min-width: 0; }
+  .course-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0 0 3px;
+  }
+  .course-hours {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+  .status-badge {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 11px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .status-empty { background: var(--warn-bg); color: var(--warn-fg); }
+  .status-partial { background: var(--partial-bg); color: var(--partial-fg); }
+  .status-full { background: var(--full-bg); color: var(--full-fg); }
+  .upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 7px 14px;
+    background: var(--teal);
+    color: white;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+  .upload-btn:hover { background: var(--deepblue); }
+  .file-list {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #EEF1F5;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .file-list a {
+    font-size: 12.5px;
+    color: var(--deepblue);
+    text-decoration: none;
+    font-family: "SFMono-Regular", Consolas, monospace;
+  }
+  .file-list a:hover { text-decoration: underline; }
+  .file-list .no-files {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .summary {
+    margin-top: 40px;
+    padding: 20px 22px;
+    background: var(--navy);
+    color: white;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  .summary strong { color: #9FE1CB; }
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">DIPLOMADO EN IA APLICADA A LA SALUD</span>
+  <h1>Estructura del programa — Ciclo I y Ciclo II</h1>
+  <p>Suba su material directamente dentro de la carpeta del curso que corresponda. Cada carpeta ya contiene el material existente, si lo hay — revíselo antes de agregar el suyo para evitar duplicados.</p>
+</header>
+
+<main>
+
+  <div class="ciclo-title">Ciclo I (Semestre 1) — se cursa primero</div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">1</div>
+      <div class="course-info">
+        <p class="course-name">Fundamentos de Inteligencia Artificial y Transformación Digital en Salud</p>
+        <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos</p>
+      </div>
+      <span class="status-badge status-empty">vacía</span>
+    </div>
+    <div class="file-list"><span class="no-files">Sin archivos aún — carpeta: Ciclo_I/Curso_1_Fundamentos_IA_Transformacion_Digital/</span></div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_I/Curso_1_Fundamentos_IA_Transformacion_Digital" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">2</div>
+      <div class="course-info">
+        <p class="course-name">Inteligencia Artificial Generativa para Profesionales de la Salud</p>
+        <p class="course-hours">48h síncronas / 16h asíncronas · 4 créditos</p>
+      </div>
+      <span class="status-badge status-empty">vacía</span>
+    </div>
+    <div class="file-list"><span class="no-files">Sin archivos aún — carpeta: Ciclo_I/Curso_2_IA_Generativa_Profesionales_Salud/</span></div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_I/Curso_2_IA_Generativa_Profesionales_Salud" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">3</div>
+      <div class="course-info">
+        <p class="course-name">Datos, Analítica y Evaluación de Inteligencia Artificial en Salud</p>
+        <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos</p>
+      </div>
+      <span class="status-badge status-partial">material parcial</span>
+    </div>
+    <div class="file-list">
+      <a href="Ciclo_I/Curso_3_Datos_Analitica_Evaluacion_IA/Chapter2_Deep_Dive_Deck.pptx">Chapter2_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_3_Datos_Analitica_Evaluacion_IA/Chapter2_LECTURE_Deck.pptx">Chapter2_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_3_Datos_Analitica_Evaluacion_IA/Chapter2_LAB_Deck.pptx">Chapter2_LAB_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_3_Datos_Analitica_Evaluacion_IA/Desglose_Tiempo_36h_12h.pdf">Desglose_Tiempo_36h_12h.pdf</a>
+    </div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_I/Curso_3_Datos_Analitica_Evaluacion_IA" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">4</div>
+      <div class="course-info">
+        <p class="course-name">Ética, Regulación y Protección de Datos en Inteligencia Artificial</p>
+        <p class="course-hours">24h síncronas / 8h asíncronas · 2 créditos</p>
+      </div>
+      <span class="status-badge status-full">material completo</span>
+    </div>
+    <div class="file-list">
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Chapter3_Deep_Dive_Deck.pptx">Chapter3_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Chapter3_LECTURE_Deck.pptx">Chapter3_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Chapter3_LAB_Deck.pptx">Chapter3_LAB_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Chapter4_Deep_Dive_Deck.pptx">Chapter4_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Chapter4_LECTURE_Deck.pptx">Chapter4_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Chapter4_LAB_Deck.pptx">Chapter4_LAB_Deck.pptx</a>
+      <a href="Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos/Desglose_Tiempo_24h_8h.pdf">Desglose_Tiempo_24h_8h.pdf</a>
+    </div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_I/Curso_4_Etica_Regulacion_Proteccion_Datos" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="ciclo-title">Ciclo II (Semestre 2) — se cursa después</div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">5</div>
+      <div class="course-info">
+        <p class="course-name">Inteligencia Artificial en la Práctica Clínica y Seguridad del Paciente</p>
+        <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos — el más completo</p>
+      </div>
+      <span class="status-badge status-full">material completo</span>
+    </div>
+    <div class="file-list">
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Chapter1_Deep_Dive_Deck.pptx">Chapter1_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Chapter1_LECTURE_Deck.pptx">Chapter1_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Chapter1_LAB_Deck.pptx">Chapter1_LAB_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Chapter2_Deep_Dive_Deck.pptx">Chapter2_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Chapter2_LECTURE_Deck.pptx">Chapter2_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Chapter2_LAB_Deck.pptx">Chapter2_LAB_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Lab_AI_for_Medical_Deck.pptx">Lab_AI_for_Medical_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Risk_Prediction_Models_Gap_Fill_Deck.pptx">Risk_Prediction_Models_Gap_Fill_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente/Desglose_Tiempo_36h_12h.pdf">Desglose_Tiempo_36h_12h.pdf</a>
+    </div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_II/Curso_5_Practica_Clinica_Seguridad_Paciente" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">6</div>
+      <div class="course-info">
+        <p class="course-name">Inteligencia Artificial Aplicada a la Investigación y Educación en Salud</p>
+        <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos</p>
+      </div>
+      <span class="status-badge status-empty">vacía</span>
+    </div>
+    <div class="file-list"><span class="no-files">Sin archivos aún — carpeta: Ciclo_II/Curso_6_Investigacion_Educacion_Salud/</span></div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_II/Curso_6_Investigacion_Educacion_Salud" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">7</div>
+      <div class="course-info">
+        <p class="course-name">Inteligencia Artificial para la Gestión Sanitaria y la Salud Pública</p>
+        <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos</p>
+      </div>
+      <span class="status-badge status-empty">vacía</span>
+    </div>
+    <div class="file-list"><span class="no-files">Sin archivos aún — carpeta: Ciclo_II/Curso_7_Gestion_Sanitaria_Salud_Publica/</span></div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_II/Curso_7_Gestion_Sanitaria_Salud_Publica" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="course-card">
+    <div class="course-head">
+      <div class="course-num">8</div>
+      <div class="course-info">
+        <p class="course-name">Seminario Integrador de Inteligencia Artificial Aplicada a la Salud</p>
+        <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos</p>
+      </div>
+      <span class="status-badge status-partial">material parcial</span>
+    </div>
+    <div class="file-list">
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Chapter5_Deep_Dive_Deck.pptx">Chapter5_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Chapter5_LECTURE_Deck.pptx">Chapter5_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Chapter5_LAB_Deck.pptx">Chapter5_LAB_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Chapter6_Deep_Dive_Deck.pptx">Chapter6_Deep_Dive_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Chapter6_LECTURE_Deck.pptx">Chapter6_LECTURE_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Chapter6_LAB_Deck.pptx">Chapter6_LAB_Deck.pptx</a>
+      <a href="Ciclo_II/Curso_8_Seminario_Integrador/Desglose_Tiempo_36h_12h.pdf">Desglose_Tiempo_36h_12h.pdf</a>
+    </div>
+    <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_II/Curso_8_Seminario_Integrador" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
+  </div>
+
+  <div class="summary">
+    <strong>Resumen:</strong> 8 cursos totales · 24 créditos · 384 horas totales.
+    Material completo o casi completo: <strong>1 curso</strong> (Curso 5).
+    Material parcial: <strong>3 cursos</strong> (Cursos 3, 4, 8).
+    Sin material: <strong>4 cursos</strong> (Cursos 1, 2, 6, 7).
+  </div>
+
+</main>
+
+<footer>
+  Diplomado en Inteligencia Artificial Aplicada a la Salud — última actualización generada automáticamente
+</footer>
+
+</body>
+</html>
