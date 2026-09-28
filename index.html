@@ -167,6 +167,133 @@
     font-size: 12px;
     color: var(--text-muted);
   }
+
+  /* ===== Dynamic material browser for Course 1 ===== */
+  .materials-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .materials-summary {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-right: auto;
+  }
+
+  .filter-btn {
+    border: 1px solid #D7E2EA;
+    background: #F8FBFD;
+    color: var(--deepblue);
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .filter-btn.active {
+    background: var(--deepblue);
+    color: #fff;
+    border-color: var(--deepblue);
+  }
+
+  .session-group {
+    border: 1px solid #E7EDF2;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+    background: #fff;
+  }
+
+  .session-title {
+    padding: 8px 10px;
+    background: #F3F8FB;
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: 1px solid #E7EDF2;
+  }
+
+  .material-row {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #F0F3F6;
+  }
+
+  .material-row:last-child { border-bottom: none; }
+
+  .material-icon {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .material-name {
+    min-width: 0;
+    color: var(--text-dark);
+    font-size: 12px;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    overflow-wrap: anywhere;
+  }
+
+  .material-meta {
+    display: block;
+    margin-top: 2px;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-muted);
+    font-size: 10.5px;
+  }
+
+  .material-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .material-actions a {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .material-actions .view-btn {
+    background: #EAF3F8;
+    color: var(--deepblue);
+  }
+
+  .material-actions .download-btn {
+    background: var(--teal);
+    color: white;
+  }
+
+  .load-error {
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    color: #9A3412;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 680px) {
+    .material-row {
+      grid-template-columns: 28px minmax(0, 1fr);
+    }
+    .material-actions {
+      grid-column: 2;
+      justify-content: flex-start;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -188,9 +315,11 @@
         <p class="course-name">Fundamentos de Inteligencia Artificial y Transformación Digital en Salud</p>
         <p class="course-hours">36h síncronas / 12h asíncronas · 3 créditos</p>
       </div>
-      <span class="status-badge status-empty">vacía</span>
+      <span id="course1-status" class="status-badge status-partial">cargando…</span>
     </div>
-    <div class="file-list"><span class="no-files">Sin archivos aún — carpeta: Ciclo_I/Curso_1_Fundamentos_IA_Transformacion_Digital/</span></div>
+    <div id="course1-files" class="file-list">
+      <span class="no-files">Cargando materiales desde GitHub…</span>
+    </div>
     <a class="upload-btn" href="https://github.com/sptmgp/AIcourseperu/upload/main/Ciclo_I/Curso_1_Fundamentos_IA_Transformacion_Digital" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subir material aquí</a>
   </div>
 
@@ -330,6 +459,244 @@
 <footer>
   Diplomado en Inteligencia Artificial Aplicada a la Salud — última actualización generada automáticamente
 </footer>
+
+
+<script>
+(function () {
+  const OWNER = "sptmgp";
+  const REPO = "AIcourseperu";
+  const BRANCH = "main";
+  const COURSE_PATH = "Ciclo_I/Curso_1_Fundamentos_IA_Transformacion_Digital";
+
+  const container = document.getElementById("course1-files");
+  const badge = document.getElementById("course1-status");
+
+  if (!container || !badge) return;
+
+  const allowedExtensions = [
+    ".pptx", ".pdf", ".docx", ".csv", ".xlsx",
+    ".zip", ".png", ".jpg", ".jpeg", ".md"
+  ];
+
+  function extOf(name) {
+    const lower = name.toLowerCase();
+    return allowedExtensions.find(ext => lower.endsWith(ext)) || "";
+  }
+
+  function iconFor(name) {
+    const ext = extOf(name);
+    if (ext === ".pptx") return "📊";
+    if (ext === ".pdf") return "📄";
+    if (ext === ".docx") return "📝";
+    if (ext === ".csv" || ext === ".xlsx") return "📈";
+    if (ext === ".zip") return "📦";
+    if ([".png", ".jpg", ".jpeg"].includes(ext)) return "🖼️";
+    if (ext === ".md") return "📑";
+    return "📁";
+  }
+
+  function typeLabel(name) {
+    const ext = extOf(name);
+    const labels = {
+      ".pptx": "Presentación",
+      ".pdf": "PDF / artículo",
+      ".docx": "Documento / guía",
+      ".csv": "Dataset CSV",
+      ".xlsx": "Dataset Excel",
+      ".zip": "Paquete ZIP",
+      ".png": "Imagen",
+      ".jpg": "Imagen",
+      ".jpeg": "Imagen",
+      ".md": "Markdown"
+    };
+    return labels[ext] || "Archivo";
+  }
+
+  function detectSession(name) {
+    const n = name.toLowerCase();
+
+    // Explicit names: Session5, SESSION5, Sesion4, session2, etc.
+    let m = n.match(/(?:session|sesion)[\s_-]?(\d{1,2})/i);
+    if (m) return Math.min(12, Math.max(1, parseInt(m[1], 10)));
+
+    // Common course naming convention: "Sesion3...", "Session4..."
+    m = n.match(/^(?:session|sesion)(\d{1,2})/i);
+    if (m) return Math.min(12, Math.max(1, parseInt(m[1], 10)));
+
+    // Materials without an explicit session number in this folder are treated as Session 1.
+    return 1;
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function countByExt(files, ext) {
+    return files.filter(f => extOf(f.name) === ext).length;
+  }
+
+  function render(files) {
+    const sorted = [...files].sort((a, b) => {
+      const sa = detectSession(a.name);
+      const sb = detectSession(b.name);
+      return sa - sb || a.name.localeCompare(b.name, "es", { numeric: true });
+    });
+
+    const counts = {
+      pptx: countByExt(sorted, ".pptx"),
+      pdf: countByExt(sorted, ".pdf"),
+      docx: countByExt(sorted, ".docx"),
+      csv: countByExt(sorted, ".csv"),
+      zip: countByExt(sorted, ".zip")
+    };
+
+    badge.textContent = `${sorted.length} materiales`;
+    badge.className = "status-badge status-full";
+
+    const toolbar = document.createElement("div");
+    toolbar.className = "materials-toolbar";
+    toolbar.innerHTML = `
+      <span class="materials-summary">
+        <strong>${sorted.length}</strong> archivos ·
+        ${counts.pptx} PPT · ${counts.pdf} PDF · ${counts.docx} DOCX ·
+        ${counts.csv} CSV · ${counts.zip} ZIP
+      </span>
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter=".pptx">PPT</button>
+      <button class="filter-btn" data-filter=".pdf">PDF</button>
+      <button class="filter-btn" data-filter=".docx">DOCX</button>
+      <button class="filter-btn" data-filter=".csv">CSV</button>
+      <button class="filter-btn" data-filter=".zip">ZIP</button>
+    `;
+
+    const groupsWrap = document.createElement("div");
+
+    const sessions = new Map();
+    sorted.forEach(file => {
+      const s = detectSession(file.name);
+      if (!sessions.has(s)) sessions.set(s, []);
+      sessions.get(s).push(file);
+    });
+
+    [...sessions.keys()].sort((a,b) => a-b).forEach(session => {
+      const group = document.createElement("div");
+      group.className = "session-group";
+      group.dataset.session = String(session);
+
+      const title = document.createElement("div");
+      title.className = "session-title";
+      title.textContent = `SESIÓN ${session} · ${sessions.get(session).length} material(es)`;
+      group.appendChild(title);
+
+      sessions.get(session).forEach(file => {
+        const ext = extOf(file.name);
+        const row = document.createElement("div");
+        row.className = "material-row";
+        row.dataset.ext = ext;
+
+        const viewUrl = file.html_url || "#";
+        const downloadUrl = file.download_url || viewUrl;
+
+        row.innerHTML = `
+          <div class="material-icon">${iconFor(file.name)}</div>
+          <div class="material-name">
+            ${escapeHtml(file.name)}
+            <span class="material-meta">${typeLabel(file.name)}</span>
+          </div>
+          <div class="material-actions">
+            <a class="view-btn" href="${escapeHtml(viewUrl)}" target="_blank" rel="noopener">Ver</a>
+            <a class="download-btn" href="${escapeHtml(downloadUrl)}" target="_blank" rel="noopener">Descargar</a>
+          </div>
+        `;
+        group.appendChild(row);
+      });
+
+      groupsWrap.appendChild(group);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(toolbar);
+    container.appendChild(groupsWrap);
+
+    toolbar.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        toolbar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.dataset.filter;
+
+        groupsWrap.querySelectorAll(".session-group").forEach(group => {
+          let visible = 0;
+          group.querySelectorAll(".material-row").forEach(row => {
+            const show = filter === "all" || row.dataset.ext === filter;
+            row.style.display = show ? "" : "none";
+            if (show) visible++;
+          });
+          group.style.display = visible ? "" : "none";
+        });
+      });
+    });
+  }
+
+  async function loadCourseFiles() {
+    const apiUrl =
+      `https://api.github.com/repos/${OWNER}/${REPO}/contents/${COURSE_PATH}?ref=${BRANCH}`;
+
+    try {
+      const response = await fetch(apiUrl, {
+        headers: { "Accept": "application/vnd.github+json" }
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub API respondió ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      const files = Array.isArray(data)
+        ? data.filter(item =>
+            item.type === "file" &&
+            allowedExtensions.some(ext => item.name.toLowerCase().endsWith(ext))
+          )
+        : [];
+
+      if (!files.length) {
+        badge.textContent = "sin materiales";
+        badge.className = "status-badge status-empty";
+        container.innerHTML = `
+          <span class="no-files">
+            No se encontraron archivos compatibles en ${COURSE_PATH}.
+          </span>`;
+        return;
+      }
+
+      render(files);
+    } catch (error) {
+      badge.textContent = "error al cargar";
+      badge.className = "status-badge status-empty";
+
+      const folderUrl =
+        `https://github.com/${OWNER}/${REPO}/tree/${BRANCH}/${COURSE_PATH}`;
+
+      container.innerHTML = `
+        <div class="load-error">
+          No fue posible cargar automáticamente los archivos desde GitHub.
+          <br><strong>${escapeHtml(error.message)}</strong>
+          <br><br>
+          <a href="${folderUrl}" target="_blank" rel="noopener">
+            Abrir la carpeta directamente en GitHub
+          </a>
+        </div>`;
+    }
+  }
+
+  loadCourseFiles();
+})();
+</script>
 
 </body>
 </html>
